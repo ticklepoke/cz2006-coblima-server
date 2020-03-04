@@ -1,0 +1,25 @@
+{
+  "name": "cz2006-coblima-server",
+  "version": "1.0.0",
+  "description": "CZ2006 Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ticklepoke/cz2006-coblima-server.git"
+  },
+  "keywords": [
+    "Server"
+  ],
+  "author": "ticklepoke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ticklepoke/cz2006-coblima-server/issues"
+  },
+  "homepage": "https://github.com/ticklepoke/cz2006-coblima-server#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
