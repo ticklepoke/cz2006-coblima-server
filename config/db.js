@@ -16,6 +16,7 @@ const connectDB = async () => {
       "@cluster0-lnewo.gcp.mongodb.net/test?retryWrites=true&w=majority";
   }
 
+  console.log(connectionString);
   await mongoose.connect(connectionString, (error, db) => {
     if (error) console.log(error);
     else console.log("Connected to MongoDB!");
