@@ -1,5 +1,10 @@
 const express = require("express");
+const connectDB = require("./config/db");
+const dotenv = require("dotenv");
 
+if (process.env.NODE_ENV != "production") dotenv.config();
+
+connectDB();
 const app = express();
 
 app.get("/", (req, res) => {
