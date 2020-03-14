@@ -11,6 +11,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const hpp = require('hpp')
 const xss = require('xss-clean')
 const rateLimit = require('express-rate-limit')
+const colors = require('colors')
 const swaggerConfig = require('./config/swaggerConfig')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv')
@@ -57,10 +58,10 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT} in ${NODE_ENV} mode`)
+  console.log(`App running on port ${PORT} in ${NODE_ENV} mode`.bgGray)
 })
 
 // Handle unhandle promise rejections
 process.on('unhandledRejection', (err, promise) => {
-  console.log(`Error: ${err.message}`)
+  console.log(`Error: ${err.message}`.red)
 })
