@@ -1,6 +1,48 @@
 const mongoose = require('mongoose')
 const slugify = require('slugify')
 
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      Course:
+ *        type: object
+ *        required:
+ *          - title
+ *          - courseCode
+ *          - description
+ *          - academicUnits
+ *          - pe
+ *          - ue
+ *        properties:
+ *          title:
+ *            type: string
+ *          courseCode:
+ *            type: string
+ *            description: Course code according to NTU's alphanumeric course code
+ *          description:
+ *            type: string
+ *          academicUnits:
+ *            type: number
+ *            description: Academic Units awarded for the course
+ *          prerequisite:
+ *            type: courseCode[]
+ *            description: Prequisite courses needed to enroll in this course
+ *          pe:
+ *            type: boolean
+ *            description: Whether this course is offered as a PE
+ *          ue:
+ *            type: boolean
+ *            description: Whether this course is offered as a UE
+ *        examples:
+ *           title: Software Engineering
+ *           courseCode: CZ2006
+ *           description: An undergraduate course on software engineering
+ *           academicUnits: 3
+ *           prerequisite: CZ1000
+ *           pe: false
+ *           ue: false
+ */
 const CourseSchema = new mongoose.Schema({
   title: {
     type: String,

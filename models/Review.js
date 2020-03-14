@@ -1,5 +1,29 @@
 const mongoose = require('mongoose')
 
+/**
+ * @swagger
+ *   components:
+ *     schemas:
+ *       Review:
+ *         type: object
+ *         required:
+ *           - title
+ *           - description
+ *           - rating
+ *           - user
+ *           - course
+ *         properties:
+ *           title:
+ *             type: string
+ *           description:
+ *             type: string
+ *           rating:
+ *             type: number
+ *           user:
+ *             $ref: '#/components/schemas/User'
+ *           course:
+ *             $ref: '#/components/schemas/Course'
+ */
 const ReviewSchema = new mongoose.Schema({
   title: {
     type: String,

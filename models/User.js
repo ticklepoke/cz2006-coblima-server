@@ -3,6 +3,28 @@ const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
+/**
+ * @swagger
+ *  components:
+ *    schemas:
+ *      User:
+ *        type: object
+ *        required:
+ *           - name
+ *           - email
+ *           - password
+ *        properties:
+ *
+ *          name:
+ *            type: string
+ *          email:
+ *            type: string
+ *            format: email
+ *          password:
+ *            type: string
+ *            format: password
+ *
+ */
 const UserSchema = new mongoose.Schema({
   name: {
     type: String,

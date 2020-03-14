@@ -16,7 +16,12 @@ const swaggerConfig = {
       }
     ]
   },
-  apis: ['./controllers/sample.js']
+  apis: [
+    './models/Course.js',
+    './models/User.js',
+    './models/Review.js',
+    './controllers/sample.js'
+  ]
 }
 
 module.exports = swaggerConfig
