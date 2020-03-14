@@ -33,4 +33,37 @@ const ReviewSchema = new mongoose.Schema({
   }
 })
 
+// static method to get average rating and save
+ReviewSchema.statics.getAverageRating = async function(courseID) {
+  const obj = await this.aggregate([
+    {
+      $match: { course: courseID }
+    },
+    {
+      $group: {
+        _id: '$course',
+        averageRating: { $avg: '$rating' }
+      }
+    }
+  ])
+
+  try {
+    await this.model('Course').findByIdAndupdate(courseID, {
+      averageRating: obj[0].averageRating
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+// Call getAverageRating after save
+ReviewSchema.post('save', function() {
+  this.constructor.getAverageRating(this.course)
+})
+
+// Call getAverageRating before remove
+ReviewSchema.pre('remove', function() {
+  this.constructor.getAverageRating(this.course)
+})
+
 module.exports = mongoose.model('Review', ReviewSchema)

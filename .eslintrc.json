@@ -16,6 +16,7 @@
   "rules": {
     "prettier/prettier": "error",
     "no-useless-escape": "off",
-    "eqeqeq": "off"
+    "eqeqeq": "off",
+    "no-return-await": "off"
   }
 }
