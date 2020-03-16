@@ -60,7 +60,10 @@ app.get('/', swaggerUI.setup(swaggerSpec, { explorer: true }))
  * Routers
  */
 const coursesRouter = require('./routes/courses')
+const reviewRouter = require('./routes/reviews')
 app.use('/api/v1/courses', coursesRouter)
+app.use('/api/v1/reviews', reviewRouter)
+
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000

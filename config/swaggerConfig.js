@@ -18,6 +18,7 @@ const swaggerConfig = {
   },
   apis: [
     './controllers/courses.js',
+    './controllers/reviews.js',
     './models/Course.js',
     './models/User.js',
     './models/Review.js'

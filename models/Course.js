@@ -37,7 +37,7 @@ const slugify = require('slugify')
  *            type: boolean
  *            description: Whether this course is offered as a UE
  *        examples:
- *           title: Software Engineering
+ *           title: 'Software Engineering'
  *           courseCode: CZ2006
  *           description: An undergraduate course on software engineering
  *           academicUnits: 3

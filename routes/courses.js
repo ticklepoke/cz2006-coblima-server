@@ -7,9 +7,13 @@ const {
   deleteCourse
 } = require('../controllers/courses')
 const Course = require('../models/Course')
-const router = express.Router()
+const router = express.Router({ mergeParams: true })
 const advancedResults = require('../middleware/advancedResults')
 const { protect, authorize } = require('../middleware/auth')
+
+const reviewRouter = require('./reviews')
+
+router.use('/:courseID/reviews', reviewRouter)
 
 router
   .route('/')
