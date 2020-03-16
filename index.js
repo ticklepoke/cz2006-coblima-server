@@ -18,7 +18,6 @@ const dotenv = require('dotenv')
 const errorHandler = require('./middleware/error')
 
 const app = express()
-// connectDB()
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -26,6 +25,9 @@ if (process.env.NODE_ENV != 'production') {
   dotenv.config()
   app.use(morgan('dev'))
 }
+console.log(`Attempting to start app in ${process.env.NODE_ENV} mode.`.bgGray)
+
+connectDB()
 
 app.use(cors())
 app.use(cookieParser())
@@ -54,6 +56,11 @@ const swaggerSpec = swaggerJSDoc(swaggerConfig)
 app.use('/', swaggerUI.serve)
 app.get('/', swaggerUI.setup(swaggerSpec, { explorer: true }))
 
+/**
+ * Routers
+ */
+const coursesRouter = require('./routes/courses')
+app.use('/api/v1/courses', coursesRouter)
 app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000

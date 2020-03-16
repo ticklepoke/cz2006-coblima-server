@@ -19,7 +19,7 @@ const connectDB = async () => {
   console.log(connectionString)
   await mongoose.connect(connectionString, (error, db) => {
     if (error) console.log(error)
-    else console.log('Connected to MongoDB!')
+    else console.log('Connected to MongoDB!'.bgRed)
   })
 }
 

@@ -26,7 +26,9 @@ const slugify = require('slugify')
  *            type: number
  *            description: Academic Units awarded for the course
  *          prerequisite:
- *            type: courseCode[]
+ *            type: array
+ *            items:
+ *              type: string
  *            description: Prequisite courses needed to enroll in this course
  *          pe:
  *            type: boolean

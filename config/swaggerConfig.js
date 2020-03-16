@@ -4,7 +4,7 @@ const swaggerConfig = {
     info: {
       title: 'CZ2006 API',
       version: '1.0.0',
-      description: 'APIs for CZ2006',
+      description: "APIs for CZ2006. NOTE: prefix all routes with '/api/v1/'",
       license: {
         name: 'MIT',
         url: 'https://choosealicense.com/licenses/mit/'
@@ -16,7 +16,12 @@ const swaggerConfig = {
       }
     ]
   },
-  apis: ['./models/Course.js', './models/User.js', './models/Review.js']
+  apis: [
+    './controllers/courses.js',
+    './models/Course.js',
+    './models/User.js',
+    './models/Review.js'
+  ]
 }
 
 module.exports = swaggerConfig
