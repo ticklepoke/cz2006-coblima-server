@@ -116,14 +116,14 @@ exports.getReview = asyncHandler(async (req, res, next) => {
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Reviews'
+ *              $ref: '#/components/schemas/Review'
  *      responses:
  *        "200":
  *          description: A review schema
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Reviews'
+ *                $ref: '#/components/schemas/Review'
  */
 exports.addReview = asyncHandler(async (req, res, next) => {
   req.body.course = req.params.courseID
@@ -160,7 +160,7 @@ exports.addReview = asyncHandler(async (req, res, next) => {
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/Reviews'
+ *              $ref: '#/components/schemas/Review'
  *      parameters:
  *        - in: path
  *          name: id
@@ -174,7 +174,7 @@ exports.addReview = asyncHandler(async (req, res, next) => {
  *          content:
  *            application/json:
  *              schema:
- *                $ref: '#/components/schemas/Reviews'
+ *                $ref: '#/components/schemas/Review'
  */
 exports.updateReview = asyncHandler(async (req, res, next) => {
   let review = await Review.findById(req.params.id)

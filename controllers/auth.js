@@ -1,6 +1,6 @@
 const crypto = require('crypto')
 const ErrorResponse = require('../utils/errorResponse')
-const asyncHandler = require('../middleware/advancedResults')
+const asyncHandler = require('../middleware/async')
 const User = require('../models/User')
 
 /**
@@ -22,7 +22,7 @@ const User = require('../models/User')
 /**
  * @swagger
  * path:
- *  /register:
+ *  /auth/register:
  *    post:
  *      summary: Register new user
  *      tags: [Auth]
@@ -42,7 +42,7 @@ const User = require('../models/User')
  */
 exports.register = asyncHandler(async (req, res, next) => {
   const { name, email, password } = req.body
-
+  console.log(name, email, password)
   const user = await User.create({
     name,
     email,
@@ -55,7 +55,7 @@ exports.register = asyncHandler(async (req, res, next) => {
 /**
  * @swagger
  * path:
- *  /login:
+ *  /auth/login:
  *    post:
  *      summary: Login user via email and password
  *      tags: [Auth]
@@ -104,7 +104,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 /**
  * @swagger
  * path:
- *  /logout:
+ *  /auth/logout:
  *    get:
  *      summary: Logout user
  *      tags: [Auth]
@@ -122,7 +122,7 @@ exports.logout = asyncHandler(async (req, res, next) => {
 /**
  * @swagger
  * path:
- *  /me:
+ *  /auth/me:
  *    get:
  *      summary: Get user details by JWT
  *      tags: [Auth]
@@ -148,7 +148,7 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 /**
  * @swagger
  * path:
- *  /updatedetails:
+ *  /auth/updatedetails:
  *    post:
  *      summary: Update user email and/or name
  *      tags: [Auth]
@@ -204,7 +204,7 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
 /**
  * @swagger
  * path:
- *  /updatepassword:
+ *  /auth/updatepassword:
  *    post:
  *      summary: Update user password
  *      tags: [Auth]
@@ -238,7 +238,7 @@ exports.updatePassword = asyncHandler(async (req, res, next) => {
 })
 
 const sendTokenResponse = (user, statusCode, res) => {
-  const token = user.getSignedJWTtoken()
+  const token = user.getSignedJWTToken()
 
   res.status(statusCode).json({
     success: true,
