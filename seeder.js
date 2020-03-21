@@ -30,8 +30,7 @@ console.log(connectionString)
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
-      useFindAndModify: true
+      useCreateIndex: true
     },
     (error, db) => {
       if (error) console.log(error)
