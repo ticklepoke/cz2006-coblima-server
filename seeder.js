@@ -25,10 +25,17 @@ if (process.env.NODE_ENV == 'production') {
 }
 console.log(connectionString)
 ;(async function() {
-  await mongoose.connect(connectionString, (error, db) => {
-    if (error) console.log(error)
-    else console.log('Connected to MongoDB!'.bgRed)
-  })
+  await mongoose.connect(
+    connectionString,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    },
+    (error, db) => {
+      if (error) console.log(error)
+      else console.log('Connected to MongoDB!'.bgRed)
+    }
+  )
 })()
 
 const users = JSON.parse(
