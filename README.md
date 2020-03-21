@@ -12,4 +12,4 @@ We will be using [StandardJS](https://standardjs.com/) for syntax styles and [Co
 
 ## Continuous Deployment
 
-Continuous Deployment is setup using Jenkins..
+Continuous Deployment is setup using Jenkins.
