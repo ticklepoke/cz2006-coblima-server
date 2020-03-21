@@ -3,6 +3,7 @@
     "_id": "5e74cf55aa5ccf040da3273e",
     "name": "Admin Account",
     "email": "test@test.com",
-    "password": "123456"
+    "password": "123456",
+    "matriculationNumber": "U18123456P"
   }
 ]
