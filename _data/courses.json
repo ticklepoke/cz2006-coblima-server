@@ -1,0 +1,11 @@
+[
+  {
+    "_id": "5e74cebb368ae6035b6aa308",
+    "title": "SOFTWARE ENGINEERING",
+    "courseCode": "CZ2006",
+    "description": "\nIntroduction to Software Engineering; Software Engineering Process; Introduction to Requirements; Introduction to Software Specifications; Software Design and Construction; Testing and Integration; Software Maintenance; Software Project Management; Software Quality; Dependability and Security\n",
+    "au": 3,
+    "pe": false,
+    "ue": false
+  }
+]
