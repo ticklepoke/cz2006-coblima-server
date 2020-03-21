@@ -16,7 +16,7 @@ const swaggerConfig = require('./config/swaggerConfig')
 const connectDB = require('./config/db')
 const dotenv = require('dotenv')
 const errorHandler = require('./middleware/error')
-const { importCourseData } = require('./seeder')
+const { importCourseData, importData, deleteData } = require('./seeder')
 
 const app = express()
 
@@ -66,8 +66,20 @@ const authRouter = require('./routes/auth')
 app.use('/api/v1/courses', coursesRouter)
 app.use('/api/v1/reviews', reviewRouter)
 app.use('/api/v1/auth', authRouter)
+
+/**
+ * INIT end points
+ */
 app.get('/api/admin/init/course', async (req, res) => {
   await importCourseData()
+  res.sendStatus(200)
+})
+app.get('/api/admin/init/import', async (req, res) => {
+  await importData()
+  res.sendStatus(200)
+})
+app.get('/api/admin/init/delete', async (req, res) => {
+  await deleteData()
   res.sendStatus(200)
 })
 

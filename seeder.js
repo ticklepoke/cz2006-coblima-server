@@ -39,19 +39,19 @@ const Review = require('./models/Review')
 //   )
 // })()
 
-// const users = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
-// )
+const users = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/users.json`, 'utf-8')
+)
 
-// const reviews = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/reviews.json`, 'utf-8')
-// )
+const reviews = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/reviews.json`, 'utf-8')
+)
 
-// const courses = JSON.parse(
-//   fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
-// )
+const courses = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
+)
 
-const importData = async () => {
+exports.importData = async () => {
   try {
     await User.create(users)
     await Review.create(reviews)
@@ -101,13 +101,13 @@ exports.importCourseData = async () => {
   // process.exit()
 }
 
-const deleteData = async () => {
+exports.deleteData = async () => {
   try {
     await User.deleteMany()
     await Course.deleteMany()
     await Review.deleteMany()
     console.log('Data Deleted!'.red.inverse)
-    process.exit()
+    //  process.exit()
   } catch (err) {
     console.error(err)
   }
