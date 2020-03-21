@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const colors = require('colors')
 const dotenv = require('dotenv')
 const axios = require('axios')
-dotenv.config()
+if (process.env.NODE_ENV !== 'production') dotenv.config()
 
 const Course = require('./models/Course')
 const User = require('./models/User')
