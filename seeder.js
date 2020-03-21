@@ -55,9 +55,9 @@ exports.importData = async () => {
   try {
     await User.create(users)
     await Review.create(reviews)
-    await Course.create(courses)
+    // await Course.create(courses)
     console.log('Data Imported!'.green.inverse)
-    process.exit()
+    // process.exit()
   } catch (err) {
     console.error(err)
   }
@@ -80,15 +80,28 @@ exports.importCourseData = async () => {
           )
           .then(async res => {
             const { title, description, au, as_pe, as_ue } = res.data.data
-            const courseResult = {
-              title,
-              courseCode: course.code,
-              description,
-              academicUnits: au,
-              pe: as_pe,
-              ue: as_ue
+            if (course.code === 'CZ2006') {
+              const courseResult = {
+                _id: '5e74cebb368ae6035b6aa307',
+                title,
+                courseCode: course.code,
+                description,
+                academicUnits: au,
+                pe: as_pe,
+                ue: as_ue
+              }
+              await Course.create(courseResult)
+            } else {
+              const courseResult = {
+                title,
+                courseCode: course.code,
+                description,
+                academicUnits: au,
+                pe: as_pe,
+                ue: as_ue
+              }
+              await Course.create(courseResult)
             }
-            await Course.create(courseResult)
           })
           .catch(err => {
             console.log(err)
