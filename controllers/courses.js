@@ -93,7 +93,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
  *                $ref: '#/components/schemas/Course'
  */
 exports.addCourse = asyncHandler(async (req, res, next) => {
-  req.body.user = req.user.id
+  // req.body.user = req.user.id
 
   const course = await Course.create(req.body)
 
