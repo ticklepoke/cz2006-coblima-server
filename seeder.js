@@ -9,21 +9,21 @@ const Course = require('./models/Course')
 const User = require('./models/User')
 const Review = require('./models/Review')
 
-let connectionString
-if (process.env.NODE_ENV == 'production') {
-  connectionString =
-    'mongodb://' +
-    process.env.MONGO_USER +
-    ':' +
-    process.env.MONGO_PW +
-    '@mongo:27017/prod?retryWrites=true&w=majority'
-} else {
-  connectionString =
-    'mongodb+srv://mongo:' +
-    process.env.MONGO_PW +
-    '@cluster0-lnewo.gcp.mongodb.net/test?retryWrites=true&w=majority'
-}
-console.log(connectionString)
+// let connectionString
+// if (process.env.NODE_ENV == 'production') {
+//   connectionString =
+//     'mongodb://' +
+//     process.env.MONGO_USER +
+//     ':' +
+//     process.env.MONGO_PW +
+//     '@mongo:27017/prod?retryWrites=true&w=majority'
+// } else {
+//   connectionString =
+//     'mongodb+srv://mongo:' +
+//     process.env.MONGO_PW +
+//     '@cluster0-lnewo.gcp.mongodb.net/test?retryWrites=true&w=majority'
+// }
+// console.log(connectionString)
 // ;(async function() {
 //   await mongoose.connect(
 //     connectionString,
@@ -51,67 +51,67 @@ console.log(connectionString)
 //   fs.readFileSync(`${__dirname}/_data/courses.json`, 'utf-8')
 // )
 
-// const importData = async () => {
-//   try {
-//     await User.create(users)
-//     await Review.create(reviews)
-//     await Course.create(courses)
-//     console.log('Data Imported!'.green.inverse)
-//     process.exit()
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+const importData = async () => {
+  try {
+    await User.create(users)
+    await Review.create(reviews)
+    await Course.create(courses)
+    console.log('Data Imported!'.green.inverse)
+    process.exit()
+  } catch (err) {
+    console.error(err)
+  }
+}
 
-// const importCourseData = async () => {
-//   axios
-//     .get('https://api.ntuvibe.com/courses/get_course_list')
-//     .then(res => {
-//       console.log('Data Fetched from External API')
-//       const courses = res.data.data.filter(course => {
-//         return course.code.startsWith('CZ200')
-//       })
+exports.importCourseData = async () => {
+  axios
+    .get('https://api.ntuvibe.com/courses/get_course_list')
+    .then(res => {
+      console.log('Data Fetched from External API')
+      const courses = res.data.data.filter(course => {
+        return course.code.startsWith('CZ200')
+      })
 
-//       courses.forEach(course => {
-//         console.log(`Fetching Data for course: ${course.code}`)
-//         axios
-//           .get(
-//             `https://api.ntuvibe.com/courses/get_course_detail?code=${course.code}`
-//           )
-//           .then(async res => {
-//             const { title, description, au, as_pe, as_ue } = res.data.data
-//             const courseResult = {
-//               title,
-//               courseCode: course.code,
-//               description,
-//               academicUnits: au,
-//               pe: as_pe,
-//               ue: as_ue
-//             }
-//             await Course.create(courseResult)
-//           })
-//           .catch(err => {
-//             console.log(err)
-//           })
-//       })
-//       console.log('Courses added!'.green.inverse)
-//       // process.exit()
-//     })
-//     .catch(err => console.log(err))
-//   // process.exit()
-// }
+      courses.forEach(course => {
+        console.log(`Fetching Data for course: ${course.code}`)
+        axios
+          .get(
+            `https://api.ntuvibe.com/courses/get_course_detail?code=${course.code}`
+          )
+          .then(async res => {
+            const { title, description, au, as_pe, as_ue } = res.data.data
+            const courseResult = {
+              title,
+              courseCode: course.code,
+              description,
+              academicUnits: au,
+              pe: as_pe,
+              ue: as_ue
+            }
+            await Course.create(courseResult)
+          })
+          .catch(err => {
+            console.log(err)
+          })
+      })
+      console.log('Courses added!'.green.inverse)
+      // process.exit()
+    })
+    .catch(err => console.log(err))
+  // process.exit()
+}
 
-// const deleteData = async () => {
-//   try {
-//     await User.deleteMany()
-//     await Course.deleteMany()
-//     await Review.deleteMany()
-//     console.log('Data Deleted!'.red.inverse)
-//     process.exit()
-//   } catch (err) {
-//     console.error(err)
-//   }
-// }
+const deleteData = async () => {
+  try {
+    await User.deleteMany()
+    await Course.deleteMany()
+    await Review.deleteMany()
+    console.log('Data Deleted!'.red.inverse)
+    process.exit()
+  } catch (err) {
+    console.error(err)
+  }
+}
 // if (process.argv[2] === '-i') {
 //   importData()
 // } else if (process.argv[2] === '-d') {
