@@ -20,7 +20,8 @@ const connectDB = async () => {
   await mongoose.connect(
     connectionString,
     {
-      // useNewUrlParser: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     },
     (error, db) => {
       if (error) console.log(error)
