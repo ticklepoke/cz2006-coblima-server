@@ -21,7 +21,9 @@ const connectDB = async () => {
     connectionString,
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: true
     },
     (error, db) => {
       if (error) console.log(error)

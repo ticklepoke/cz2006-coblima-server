@@ -29,7 +29,9 @@ console.log(connectionString)
     connectionString,
     {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: true
     },
     (error, db) => {
       if (error) console.log(error)
