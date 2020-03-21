@@ -13,6 +13,9 @@ const swaggerConfig = {
     servers: [
       {
         url: 'http://localhost:5000/api/v1'
+      },
+      {
+        url: 'http://35.240.245.213/api/v1'
       }
     ]
   },
