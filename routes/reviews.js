@@ -22,7 +22,7 @@ router
     }),
     getReviews
   )
-  .post(addReview)
+  .post(protect, addReview)
 
 router
   .route('/:id')
