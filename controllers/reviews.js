@@ -50,6 +50,14 @@ const Course = require('../models/Course')
 exports.getReviews = asyncHandler(async (req, res, next) => {
   if (req.params.courseID) {
     const reviews = await Review.find({ course: req.params.courseID })
+
+    return res.status(200).json({
+      success: true,
+      count: reviews.length,
+      data: reviews
+    })
+  } else if (req.params.userID) {
+    const reviews = await Review.find({ user: req.params.userID })
     return res.status(200).json({
       success: true,
       count: reviews.length,

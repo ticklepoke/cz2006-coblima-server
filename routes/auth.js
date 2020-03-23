@@ -8,8 +8,11 @@ const {
   updatePassword
 } = require('../controllers/auth')
 
-const router = express.Router()
+const router = express.Router({ mergeParams: true })
 const { protect } = require('../middleware/auth')
+
+const reviewrouter = require('./reviews')
+router.use('/:userID/reviews', reviewrouter)
 
 router.post('/register', register)
 router.post('/login', login)
