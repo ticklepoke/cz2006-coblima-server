@@ -227,8 +227,11 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
  *          description: None
  */
 exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const user = await (await User.findById(req.user.id)).isSelected('+password')
+  const user = await User.findById(req.user.id).select('+password')
 
+  if (!user) {
+    return next(new ErrorResponse('Invalid Credentials', 401))
+  }
   if (!(await user.matchPassword(req.body.currentPassword))) {
     return next(new ErrorResponse('Password is incorrect', 401))
   }
