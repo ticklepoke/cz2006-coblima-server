@@ -69,7 +69,7 @@ exports.importCourseData = async () => {
     .then(res => {
       console.log('Data Fetched from External API')
       const courses = res.data.data.filter(course => {
-        return course.code.startsWith('CZ200')
+        return course.code.startsWith('CZ')
       })
 
       courses.forEach(course => {
