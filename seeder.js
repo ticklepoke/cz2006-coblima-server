@@ -79,14 +79,11 @@ exports.importCourseData = async () => {
             `https://api.ntuvibe.com/courses/get_course_detail?code=${course.code}`
           )
           .then(async res => {
-            const {
-              title,
-              description,
-              au,
-              as_pe,
-              as_ue,
-              prerequisite
-            } = res.data.data
+            const { title, description, au, as_pe, as_ue } = res.data.data
+            const prerequisite = res.data.data.constraint.prerequisite
+              .toString()
+              .replace(/OR,/g, 'or ')
+
             if (course.code === 'CZ2006') {
               const courseResult = {
                 _id: '5e74cebb368ae6035b6aa307',
@@ -106,7 +103,8 @@ exports.importCourseData = async () => {
                 description,
                 academicUnits: au,
                 pe: as_pe,
-                ue: as_ue
+                ue: as_ue,
+                prerequisite
               }
               await Course.create(courseResult)
             }
