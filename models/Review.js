@@ -19,8 +19,6 @@ const mongoose = require('mongoose')
  *             type: string
  *           rating:
  *             type: number
- *            edited:
- *              type: boolean
  *           user:
  *             $ref: '#/components/schemas/User'
  *           course:
@@ -56,10 +54,6 @@ const ReviewSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now()
-  },
-  edited: {
-    type: Boolean,
-    default: false
   }
 })
 
