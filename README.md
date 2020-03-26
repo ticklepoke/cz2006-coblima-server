@@ -9,3 +9,7 @@ Development and Production databases are hosted separately. The development data
 ## Linting
 
 We will be using [StandardJS](https://standardjs.com/) for syntax styles and [CommonJS](https://requirejs.org/docs/commonjs.html) for modules style. Linting is enforced by [Husky](https://github.com/typicode/husky) and [lint staged](https://github.com/okonet/lint-staged).
+
+## Continuous Deployment
+
+Continuous Deployment is setup using Jenkins.

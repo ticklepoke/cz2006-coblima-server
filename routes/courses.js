@@ -4,7 +4,8 @@ const {
   addCourse,
   getCourse,
   updateCourse,
-  deleteCourse
+  deleteCourse,
+  searchCourse
 } = require('../controllers/courses')
 const Course = require('../models/Course')
 const router = express.Router({ mergeParams: true })

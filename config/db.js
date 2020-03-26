@@ -17,10 +17,19 @@ const connectDB = async () => {
   }
 
   console.log(connectionString)
-  await mongoose.connect(connectionString, (error, db) => {
-    if (error) console.log(error)
-    else console.log('Connected to MongoDB!'.bgRed)
-  })
+  await mongoose.connect(
+    connectionString,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: true
+    },
+    (error, db) => {
+      if (error) console.log(error)
+      else console.log('Connected to MongoDB!'.bgRed)
+    }
+  )
 }
 
 module.exports = connectDB

@@ -67,7 +67,10 @@ const CourseSchema = new mongoose.Schema({
     default: 0,
     required: [true, 'Please add AUs']
   },
-  prerequisite: [this], // self reference to other courses
+  prerequisite: {
+    type: String,
+    required: true
+  }, // self reference to other courses
   pe: {
     type: Boolean,
     default: true,

@@ -39,6 +39,10 @@ const UserSchema = new mongoose.Schema({
       'Email is invalid!'
     ]
   },
+  matriculationNumber: {
+    type: String,
+    required: [true, 'Please add a matriculation number!']
+  },
   role: {
     type: String,
     enum: ['user', 'admin'],

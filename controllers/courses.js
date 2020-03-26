@@ -16,6 +16,11 @@ const Course = require('../models/Course')
  *    get:
  *      summary: Get all courses
  *      tags: [Courses]
+ *      parameters:
+ *        - in: query
+ *          name: search
+ *          type: string
+ *          description: Course code or name to search by
  *      responses:
  *        "200":
  *          description: A course schema
@@ -25,7 +30,31 @@ const Course = require('../models/Course')
  *                $ref: '#/components/schemas/Course'
  */
 exports.getCourses = asyncHandler(async (req, res, next) => {
-  return res.status(200).json(res.advancedResults)
+  if (req.query.search) {
+    const searchKey = new RegExp(req.query.search, 'i')
+    const coursesByTitle = await Course.find({
+      title: searchKey
+    })
+    const coursesByCode = await Course.find({
+      courseCode: searchKey
+    })
+    const courses = coursesByCode.concat(coursesByTitle)
+
+    if (!courses) {
+      return next(
+        new ErrorResponse(
+          `Could not find any courses matching ${req.query.search}`,
+          404
+        )
+      )
+    }
+    return res.status(200).json({
+      success: true,
+      data: courses
+    })
+  } else {
+    return res.status(200).json(res.advancedResults)
+  }
 })
 
 /**
@@ -93,7 +122,7 @@ exports.getCourse = asyncHandler(async (req, res, next) => {
  *                $ref: '#/components/schemas/Course'
  */
 exports.addCourse = asyncHandler(async (req, res, next) => {
-  req.body.user = req.user.id
+  // req.body.user = req.user.id
 
   const course = await Course.create(req.body)
 

@@ -41,12 +41,13 @@ const User = require('../models/User')
  *                $ref: '#/components/schemas/User'
  */
 exports.register = asyncHandler(async (req, res, next) => {
-  const { name, email, password } = req.body
-  console.log(name, email, password)
+  const { name, email, password, matriculationNumber } = req.body
+  // console.log(name, email, password)
   const user = await User.create({
     name,
     email,
-    password
+    password,
+    matriculationNumber
   })
 
   sendTokenResponse(user, 200, res)
@@ -86,7 +87,9 @@ exports.login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Please provide an email or password!', 400))
   }
 
-  const user = await (await User.findOne({ email })).isSelected('+password')
+  const user = await User.findOne({ email }).select('+password')
+
+  console.log(user)
 
   if (!user) {
     return next(new ErrorResponse('Invalid Credentials', 401))
@@ -137,7 +140,7 @@ exports.logout = asyncHandler(async (req, res, next) => {
  *                $ref: '#/components/schemas/User'
  */
 exports.getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(res.params.id)
+  const user = await User.findById(req.user.id)
 
   res.status(200).json({
     success: true,
@@ -224,8 +227,11 @@ exports.updateDetails = asyncHandler(async (req, res, next) => {
  *          description: None
  */
 exports.updatePassword = asyncHandler(async (req, res, next) => {
-  const user = await (await User.findById(req.user.id)).isSelected('+password')
+  const user = await User.findById(req.user.id).select('+password')
 
+  if (!user) {
+    return next(new ErrorResponse('Invalid Credentials', 401))
+  }
   if (!(await user.matchPassword(req.body.currentPassword))) {
     return next(new ErrorResponse('Password is incorrect', 401))
   }
