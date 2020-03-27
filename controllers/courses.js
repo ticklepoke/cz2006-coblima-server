@@ -31,20 +31,7 @@ const Course = require('../models/Course')
  */
 exports.getCourses = asyncHandler(async (req, res, next) => {
   if (req.originalUrl == '/api/v1/courses//') {
-    res.status(200).json({
-      sucess: true,
-      data: {
-        academicUnits: 0,
-        pe: false,
-        ue: false,
-        _id: '',
-        title: '',
-        courseCode: '',
-        description: '',
-        prerequisite: ''
-      }
-    })
-    return
+    return next(new ErrorResponse(`Invalid url`, 400))
   }
   if (req.query.search) {
     const searchKey = new RegExp(req.query.search, 'i')
