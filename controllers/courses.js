@@ -30,6 +30,22 @@ const Course = require('../models/Course')
  *                $ref: '#/components/schemas/Course'
  */
 exports.getCourses = asyncHandler(async (req, res, next) => {
+  if (req.originalUrl == '/api/v1/courses//') {
+    res.status(200).json({
+      sucess: true,
+      data: {
+        academicUnits: 0,
+        pe: false,
+        ue: false,
+        _id: '',
+        title: '',
+        courseCode: '',
+        description: '',
+        prerequisite: ''
+      }
+    })
+    return
+  }
   if (req.query.search) {
     const searchKey = new RegExp(req.query.search, 'i')
     const coursesByTitle = await Course.find({
@@ -80,8 +96,12 @@ exports.getCourses = asyncHandler(async (req, res, next) => {
  *                $ref: '#/components/schemas/Course'
  */
 exports.getCourse = asyncHandler(async (req, res, next) => {
+  console.log('here1')
   if (!req.params.id) {
     return next(new ErrorResponse('No course ID specified', 404))
+  }
+  if (req.params.id === '/') {
+    console.log('here')
   }
   const course = await Course.findById(req.params.id)
 
