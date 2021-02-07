@@ -23,7 +23,8 @@ const app = express()
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 if (process.env.NODE_ENV != 'production') {
-  dotenv.config()
+  dotenv.config('.env')
+  console.log(process.env.BLAH)
   app.use(morgan('dev'))
 }
 console.log(`Attempting to start app in ${process.env.NODE_ENV} mode.`.bgGray)
@@ -41,7 +42,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const limiter = rateLimit({
   windowMs: 10 * 60 * 1000,
-  max: 100 // max 100 requests per 10 min
+  max: 100, // max 100 requests per 10 min
 })
 app.use(limiter)
 

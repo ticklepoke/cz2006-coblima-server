@@ -19,7 +19,7 @@ const mongoose = require('mongoose')
  *             type: string
  *           rating:
  *             type: number
- *            edited:
+ *           edited:
  *              type: boolean
  *           user:
  *             $ref: '#/components/schemas/User'

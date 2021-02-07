@@ -11,7 +11,7 @@ const connectDB = async () => {
       '@mongo:27017/prod?retryWrites=true&w=majority'
   } else {
     connectionString =
-      'mongodb+srv://mongo:' +
+      'mongodb+srv://goingtoberkeley:' +
       process.env.MONGO_PW +
       '@cluster0-lnewo.gcp.mongodb.net/test?retryWrites=true&w=majority'
   }
